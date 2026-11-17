@@ -1,0 +1,324 @@
+{
+  "status": "PASS_WITH_SCOPE_LIMITATIONS",
+  "auditor": "Independent child agent /root/criteo_data_audit; standalone checker does not import builder or primary validator",
+  "checked_at_utc": "2026-11-14T16:56:41.686682+00:00",
+  "source_revision": "e11d69ae913b16cdd7387706a2133def0fdc6ced",
+  "source_file_inventory_count": 6027,
+  "assertions_passed": 408,
+  "failures": [],
+  "rows_checked": 480000,
+  "source_cell_values_checked": 19200000,
+  "clicks": 15938,
+  "nonclicks": 464062,
+  "splits": [
+    {
+      "split": "train",
+      "rows": 320000,
+      "days": [
+        "2015-02-15",
+        "2015-02-16",
+        "2015-02-17",
+        "2015-02-18",
+        "2015-02-19",
+        "2015-02-20",
+        "2015-02-21",
+        "2015-02-22",
+        "2015-02-23",
+        "2015-02-24",
+        "2015-02-25",
+        "2015-02-26",
+        "2015-02-27",
+        "2015-02-28",
+        "2015-03-01",
+        "2015-03-02"
+      ],
+      "clicks": 10590,
+      "sample_click_rate": 0.03309375,
+      "sha256": "62639278a512d8f6c25b5334892fe114b3e6de7fada7a5337da0e7a984fcb9da"
+    },
+    {
+      "split": "validation",
+      "rows": 80000,
+      "days": [
+        "2015-03-03",
+        "2015-03-04",
+        "2015-03-05",
+        "2015-03-06"
+      ],
+      "clicks": 2787,
+      "sample_click_rate": 0.0348375,
+      "sha256": "0bd30ad620dd8f0fc0c3b90304802be7018885ccf2079bad7c2b0ce810f6bb40"
+    },
+    {
+      "split": "test",
+      "rows": 80000,
+      "days": [
+        "2015-03-07",
+        "2015-03-08",
+        "2015-03-09",
+        "2015-03-10"
+      ],
+      "clicks": 2561,
+      "sample_click_rate": 0.0320125,
+      "sha256": "28331e19d50c3fac1188eb1f2dd340b3476d1845a8d1a32ca48d6b961ec82a0c"
+    }
+  ],
+  "days": [
+    {
+      "day": "2015-02-15",
+      "split": "train",
+      "rows": 20000,
+      "clicks": 628,
+      "nonclicks": 19372,
+      "source_sha256": "446dcbd947fe8a8fdf5a64afecacdd2b7a0af444aa27442da9796b8a22660be6",
+      "source_values_compared": 800000,
+      "source_sha256_verified_against_live_upstream": true
+    },
+    {
+      "day": "2015-02-16",
+      "split": "train",
+      "rows": 20000,
+      "clicks": 582,
+      "nonclicks": 19418,
+      "source_sha256": "d4d51b299dd0ed94b4a31cd2c66abe1af1abce3b364874db3ac106a1135fbcfc",
+      "source_values_compared": 800000,
+      "source_sha256_verified_against_live_upstream": true
+    },
+    {
+      "day": "2015-02-17",
+      "split": "train",
+      "rows": 20000,
+      "clicks": 624,
+      "nonclicks": 19376,
+      "source_sha256": "3643e64573a703a04f966f6e3cebe2a82e1e550064b2da7b2c0563358c6ecfb3",
+      "source_values_compared": 800000,
+      "source_sha256_verified_against_live_upstream": true
+    },
+    {
+      "day": "2015-02-18",
+      "split": "train",
+      "rows": 20000,
+      "clicks": 657,
+      "nonclicks": 19343,
+      "source_sha256": "47cba23d619eb8a57a42f3d205a59946879f0fa25435808e6c8a931a8a4a4666",
+      "source_values_compared": 800000,
+      "source_sha256_verified_against_live_upstream": true
+    },
+    {
+      "day": "2015-02-19",
+      "split": "train",
+      "rows": 20000,
+      "clicks": 709,
+      "nonclicks": 19291,
+      "source_sha256": "842028df51822282115026bb6bbfe45efefb2f25587d05dc11a58d798405378d",
+      "source_values_compared": 800000,
+      "source_sha256_verified_against_live_upstream": true
+    },
+    {
+      "day": "2015-02-20",
+      "split": "train",
+      "rows": 20000,
+      "clicks": 709,
+      "nonclicks": 19291,
+      "source_sha256": "1af68b7fdd6850794cddecfad3e9f8d14df7a689ca66841eefd157691e58c033",
+      "source_values_compared": 800000,
+      "source_sha256_verified_against_live_upstream": true
+    },
+    {
+      "day": "2015-02-21",
+      "split": "train",
+      "rows": 20000,
+      "clicks": 595,
+      "nonclicks": 19405,
+      "source_sha256": "8c75365d7d7e2b78210321e1d25011e05d0389493e417d9ff56e29ce8affb722",
+      "source_values_compared": 800000,
+      "source_sha256_verified_against_live_upstream": true
+    },
+    {
+      "day": "2015-02-22",
+      "split": "train",
+      "rows": 20000,
+      "clicks": 712,
+      "nonclicks": 19288,
+      "source_sha256": "63b3a104d62af6b51174512f6d37a9b05c32f272e9383c003b8c11a1adc567b5",
+      "source_values_compared": 800000,
+      "source_sha256_verified_against_live_upstream": true
+    },
+    {
+      "day": "2015-02-23",
+      "split": "train",
+      "rows": 20000,
+      "clicks": 676,
+      "nonclicks": 19324,
+      "source_sha256": "1406dfb2c3264c7130b1a7fe8a7012d68f9bbeb1b246274a8f2a49c1271ee4b1",
+      "source_values_compared": 800000,
+      "source_sha256_verified_against_live_upstream": true
+    },
+    {
+      "day": "2015-02-24",
+      "split": "train",
+      "rows": 20000,
+      "clicks": 651,
+      "nonclicks": 19349,
+      "source_sha256": "c647187f0358efd8ecf8a356b88ea45d9fe127a0b022be14031f8013ddd190eb",
+      "source_values_compared": 800000,
+      "source_sha256_verified_against_live_upstream": true
+    },
+    {
+      "day": "2015-02-25",
+      "split": "train",
+      "rows": 20000,
+      "clicks": 685,
+      "nonclicks": 19315,
+      "source_sha256": "3c07beaa8e6915d57a28a5c6e8a54752414d14462cfa111bfe22187184a088ca",
+      "source_values_compared": 800000,
+      "source_sha256_verified_against_live_upstream": true
+    },
+    {
+      "day": "2015-02-26",
+      "split": "train",
+      "rows": 20000,
+      "clicks": 693,
+      "nonclicks": 19307,
+      "source_sha256": "0fa38b5f561c0a1f5772e8908b9dc898e45ef20c1e18beee1e0dafb673a3bad4",
+      "source_values_compared": 800000,
+      "source_sha256_verified_against_live_upstream": true
+    },
+    {
+      "day": "2015-02-27",
+      "split": "train",
+      "rows": 20000,
+      "clicks": 719,
+      "nonclicks": 19281,
+      "source_sha256": "b0fb21484a54be6276a15894c8a9cea01c7abe05ba99b621b0ac29ca80f77db5",
+      "source_values_compared": 800000,
+      "source_sha256_verified_against_live_upstream": true
+    },
+    {
+      "day": "2015-02-28",
+      "split": "train",
+      "rows": 20000,
+      "clicks": 655,
+      "nonclicks": 19345,
+      "source_sha256": "0137795c5d6dd122886709f03caa8301ae2129499418763046bf1350da7e8015",
+      "source_values_compared": 800000,
+      "source_sha256_verified_against_live_upstream": true
+    },
+    {
+      "day": "2015-03-01",
+      "split": "train",
+      "rows": 20000,
+      "clicks": 651,
+      "nonclicks": 19349,
+      "source_sha256": "e4e486b0667732054e8d9aa84ca9fd6aae78c7c197537fe8edbacfb0bccd2457",
+      "source_values_compared": 800000,
+      "source_sha256_verified_against_live_upstream": true
+    },
+    {
+      "day": "2015-03-02",
+      "split": "train",
+      "rows": 20000,
+      "clicks": 644,
+      "nonclicks": 19356,
+      "source_sha256": "37bbde53847a407ed014d0af15b1c553d8c28e19f2f0dc4d20452c436bfb7045",
+      "source_values_compared": 800000,
+      "source_sha256_verified_against_live_upstream": true
+    },
+    {
+      "day": "2015-03-03",
+      "split": "validation",
+      "rows": 20000,
+      "clicks": 657,
+      "nonclicks": 19343,
+      "source_sha256": "534780148dc2db56ef7d10978d907bf8f2fe6e4fa9b6ba5bf003784ddd85bc85",
+      "source_values_compared": 800000,
+      "source_sha256_verified_against_live_upstream": true
+    },
+    {
+      "day": "2015-03-04",
+      "split": "validation",
+      "rows": 20000,
+      "clicks": 693,
+      "nonclicks": 19307,
+      "source_sha256": "cf2e30b3363ef04e28f51f135f16a39d80702d5d8f2b3483490330d88e47e0f4",
+      "source_values_compared": 800000,
+      "source_sha256_verified_against_live_upstream": true
+    },
+    {
+      "day": "2015-03-05",
+      "split": "validation",
+      "rows": 20000,
+      "clicks": 738,
+      "nonclicks": 19262,
+      "source_sha256": "e89657f5881f0eceb2170e84166a46223c3e9fdc9985f23fc8753b9ff7030773",
+      "source_values_compared": 800000,
+      "source_sha256_verified_against_live_upstream": true
+    },
+    {
+      "day": "2015-03-06",
+      "split": "validation",
+      "rows": 20000,
+      "clicks": 699,
+      "nonclicks": 19301,
+      "source_sha256": "58d02f12d3ab41b46214ae07e2f067220a5bd484069226c101d3bca480514ca1",
+      "source_values_compared": 800000,
+      "source_sha256_verified_against_live_upstream": true
+    },
+    {
+      "day": "2015-03-07",
+      "split": "test",
+      "rows": 20000,
+      "clicks": 633,
+      "nonclicks": 19367,
+      "source_sha256": "08a355a1e6c63e43bdc265bbef118a0de6487682be1c0acc40a1e42cc7a9904f",
+      "source_values_compared": 800000,
+      "source_sha256_verified_against_live_upstream": true
+    },
+    {
+      "day": "2015-03-08",
+      "split": "test",
+      "rows": 20000,
+      "clicks": 663,
+      "nonclicks": 19337,
+      "source_sha256": "b0e6dde754c83879b1fe97fe27e86cdcee165396d88dbf11810f3cf82df66153",
+      "source_values_compared": 800000,
+      "source_sha256_verified_against_live_upstream": true
+    },
+    {
+      "day": "2015-03-09",
+      "split": "test",
+      "rows": 20000,
+      "clicks": 612,
+      "nonclicks": 19388,
+      "source_sha256": "4e6b37e3c6178b815408004300ffe74c2b74bfe46bf81005cbcaa070c894a4a1",
+      "source_values_compared": 800000,
+      "source_sha256_verified_against_live_upstream": true
+    },
+    {
+      "day": "2015-03-10",
+      "split": "test",
+      "rows": 20000,
+      "clicks": 653,
+      "nonclicks": 19347,
+      "source_sha256": "0382f36c948870db27b2df5469062880704d12af322daabc77a0963497535853",
+      "source_values_compared": 800000,
+      "source_sha256_verified_against_live_upstream": true
+    }
+  ],
+  "benchmark_code_review": {
+    "predictors": "Loads only the schema's feature allowlist; label, day and source identity are not passed as predictors.",
+    "preprocessing": "Numeric medians, category-frequency maps and Ridge scaling are fitted on training data only.",
+    "test_policy": "Default invocation evaluates validation only; --evaluate-test is explicit. Integrity checks inspect test labels without fitting or choosing models.",
+    "scope": "Retrains numerical Ridge/tree baselines on impression labels; does not claim to evaluate the fitted adsim system, MiniLM, CPM or advertiser transfer.",
+    "caveat": "Regression outputs are clipped for probability scoring and out-of-range counts are reported; frequency encoding loses category identity. Benchmark is a fixed smoke test, not a tuned classifier comparison."
+  },
+  "limitations": [
+    "Only 24 upstream day partitions exist; the requested 8\u201312 weeks cannot be supplied without a different source.",
+    "Dates are supplied by the official mirror's directory partitions; original event timestamps and within-day chronology cannot be independently established.",
+    "Selecting one shard and 20,000 rows per day is a bounded cluster sample, not a globally representative traffic sample.",
+    "Upstream positives and negatives were subsampled at unequal undisclosed rates; sample click rates/calibration must not be interpreted as population CTR.",
+    "Anonymous columns do not identify advertisers, audiences, creatives, spend or creative text. Do not fabricate these or use the sample to claim CPM/MiniLM/advertiser-generalization validation.",
+    "Row identities and dates are disjoint across splits, but recurring users/ads cannot be audited because column semantics are undisclosed.",
+    "CC-BY-NC-SA-4.0 attribution/noncommercial/share-alike source terms apply."
+  ]
+}

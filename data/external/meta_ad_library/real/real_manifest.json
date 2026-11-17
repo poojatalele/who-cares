@@ -1,0 +1,128 @@
+{
+  "what_this_is": "Public Meta Ad Library records, flattened. No value in real/ is estimated or simulated.",
+  "not_published_by_the_ad_library": [
+    "impressions",
+    "clicks",
+    "spend",
+    "CTR",
+    "CPM",
+    "budget"
+  ],
+  "sources": [
+    {
+      "page": "sephora_france",
+      "page_url": "https://www.facebook.com/sephorafrance",
+      "delivery_country": "FR",
+      "actor": "curious_coder/facebook-ads-library-scraper",
+      "actor_build": "2.7.29",
+      "run_id": "y2cNcOXY8wJ9rvCmM",
+      "items": 1003,
+      "file": "full_eu_sephora_france.json",
+      "sha256": "5f6b6409979437edadd592783b8aad2510cc86f638cb9c7f89e7965f050a313b",
+      "fetched_at_utc": "2026-11-14T18:17:19.232851+00:00"
+    },
+    {
+      "page": "sephora_italia",
+      "page_url": "https://www.facebook.com/sephoraitalia",
+      "delivery_country": "IT",
+      "actor": "curious_coder/facebook-ads-library-scraper",
+      "actor_build": "2.7.29",
+      "run_id": "PctMsGuSw53i35Oos",
+      "items": 1000,
+      "file": "full_eu_sephora_italia.json",
+      "sha256": "be18a4a83c05e7b45bf542d4b14ad44dc1df15b4e50ea6135640fe1454f26197",
+      "fetched_at_utc": "2026-11-14T18:17:19.232851+00:00"
+    },
+    {
+      "page": "sephora",
+      "page_url": "https://www.facebook.com/sephora",
+      "delivery_country": "ALL",
+      "actor": "curious_coder/facebook-ads-library-scraper",
+      "actor_build": "2.7.29",
+      "run_id": "GpV525JhbhbjmtVhs",
+      "items": 500,
+      "file": "full_us_sephora.json",
+      "sha256": "874b34df69762098287fa0021153e56cc34f592ead3d1ee20a7e2f74eedc8300",
+      "fetched_at_utc": "2026-11-14T18:19:09.537164+00:00"
+    }
+  ],
+  "duplicate_ads_dropped": 0,
+  "pages": {
+    "sephora": {
+      "ads": 500,
+      "creatives": 177,
+      "first_start_date": "2026-11-02",
+      "last_start_date": "2026-11-14",
+      "active_at_fetch": 500,
+      "ads_with_eu_reach": 0,
+      "eu_total_reach_sum": 0,
+      "formats": {
+        "VIDEO": 212,
+        "DCO": 159,
+        "DPA": 64,
+        "IMAGE": 38,
+        "CAROUSEL": 27
+      },
+      "targeting_specs": 0
+    },
+    "sephora_france": {
+      "ads": 1003,
+      "creatives": 360,
+      "first_start_date": "2026-08-10",
+      "last_start_date": "2026-11-13",
+      "active_at_fetch": 398,
+      "ads_with_eu_reach": 1003,
+      "eu_total_reach_sum": 230384714,
+      "formats": {
+        "DCO": 296,
+        "DPA": 241,
+        "IMAGE": 237,
+        "VIDEO": 223,
+        "CAROUSEL": 6
+      },
+      "targeting_specs": 17
+    },
+    "sephora_italia": {
+      "ads": 1000,
+      "creatives": 445,
+      "first_start_date": "2026-06-16",
+      "last_start_date": "2026-11-14",
+      "active_at_fetch": 130,
+      "ads_with_eu_reach": 1000,
+      "eu_total_reach_sum": 305891335,
+      "formats": {
+        "IMAGE": 318,
+        "DCO": 250,
+        "VIDEO": 221,
+        "DPA": 149,
+        "CAROUSEL": 62
+      },
+      "targeting_specs": 21
+    }
+  },
+  "caveats": [
+    "Reach is lifetime-to-date and is censored for ads still active at fetch time",
+    "end_date of an active ad is the last day Meta reported, not a planned end",
+    "Records are the most recent ads per page up to the fetch limit, not a random sample of all ads",
+    "Meta reports small reach values with privacy rounding; segment reach may not sum exactly to eu_total_reach",
+    "Ads without EU delivery (the US page) carry no targeting or reach"
+  ],
+  "reach_check": {
+    "eu_ads": 2003,
+    "ads_where_segment_sum_within_5pct_of_total": 1972
+  },
+  "outputs": {
+    "ads.csv": {
+      "rows": 2503,
+      "sha256": "6ade2b9856ae09e29a691bb17b7e31a11a76d5bd99f50d3549e764e17377576a"
+    },
+    "creatives.csv": {
+      "rows": 982,
+      "sha256": "71bcfbb3f9e1e5f82fba8fe9c27ac49a74af4171cbed659db8e1c7153f1f619f"
+    },
+    "reach_by_segment.csv": {
+      "rows": 28189,
+      "sha256": "b224770658e77f7bab612113a9567db3ec3305d86d20f9ba9d836714fc095b8d"
+    }
+  }
+}

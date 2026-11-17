@@ -148,6 +148,44 @@ class Uncertainty(unittest.TestCase):
         self.assertLess(r["cov80_ctr_simulated_known"], 0.90)                       # was 0.85-0.91 when noise was counted twice
 
 
+class CtrCeiling(unittest.TestCase):
+    """CTR is a share of impressions. The log-linear forecast has no upper limit of its own, so a
+    high-rate history plus a budget cut (CTR elasticity is negative) used to forecast above 100%."""
+
+    @classmethod
+    def setUpClass(cls):
+        hot = H[H.quality == ""].copy()
+        hot["clicks"] = (hot["impressions"] * 0.9).round()                      # valid rows: clicks <= impressions
+        hot["ctr"] = hot["clicks"] / hot["impressions"] * 100
+        cls.hot = hot
+
+    def _engine(self, likelihood):
+        cfg = copy.deepcopy(CFG)
+        cfg["ctr_likelihood"] = likelihood
+        return Engine(cfg).calibrate(self.hot, C).fit(self.hot, C)
+
+    def test_forecast_and_band_never_exceed_100_percent(self):
+        for likelihood in ("lognormal", "poisson"):
+            e = self._engine(likelihood)
+            self.assertEqual(e.ctr_mode, likelihood)
+            p = e.predict(FUT, budget_multiplier=0.01)                          # deep budget cut pushes CTR up
+            for col in ("ctr", "ctr_lo", "ctr_hi"):
+                self.assertTrue(np.isfinite(p[col]).all(), (likelihood, col))
+                self.assertLessEqual(p[col].max(), 100.0, (likelihood, col))
+            self.assertGreater(p["ctr"].max(), 99.0)                            # the ceiling is actually reached here
+            self.assertTrue((p["ctr_lo"] <= p["ctr"]).all() and (p["ctr"] <= p["ctr_hi"]).all())
+
+    def test_simulated_clicks_never_exceed_impressions(self):
+        for likelihood in ("lognormal", "poisson"):
+            s = simulate(self._engine(likelihood), FUT.assign(budget=FUT["budget"] * 0.01), draws=400)
+            self.assertLessEqual(s["ctr_observed_p90"].max(), 100.0, likelihood)
+            self.assertTrue((s["clicks_p90"] <= s["impressions_p90"]).all(), likelihood)
+
+    def test_ordinary_forecasts_are_untouched(self):
+        p = Engine(CFG).calibrate(H, C).fit(H, C).predict(FUT)
+        self.assertLess(p["ctr_hi"].max(), 50.0)                                # nowhere near the ceiling on real data
+
+
 class ValidationBoundaries(unittest.TestCase):
     def test_training_cutoff_is_respected(self):
         cut = pd.Timestamp("2026-11-02")

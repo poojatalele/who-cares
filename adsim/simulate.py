@@ -2,6 +2,8 @@
 import numpy as np
 import pandas as pd
 
+from .engine import MAX_CTR_PCT
+
 
 def what_if_budget(engine, rows, multipliers=(0.5, 0.75, 1.0, 1.25, 1.5, 2.0, 3.0)):
     """Response of one audience-day (or any set of rows) to scaling its budget.
@@ -51,10 +53,10 @@ def simulate(engine, rows, draws=2000, seed=0):
         s_ctr = np.where(cold, engine.tau["ctr"]["cold"], engine.tau["ctr"]["warm"])
         s_cpm = np.where(cold, engine.tau["cpm"]["cold"], engine.tau["cpm"]["warm"])
         label = "rate error (held-out, count noise removed) + Poisson click noise"
-    ctr = p["ctr"].values * np.exp(rng.normal(0, 1, (draws, len(p))) * s_ctr)
+    ctr = np.minimum(p["ctr"].values * np.exp(rng.normal(0, 1, (draws, len(p))) * s_ctr), MAX_CTR_PCT)
     cpm = p["cpm"].values * np.exp(rng.normal(0, 1, (draws, len(p))) * s_cpm)
     impr = spend / cpm * 1000
-    clicks = rng.poisson(impr * ctr / 100)
+    clicks = np.minimum(rng.poisson(impr * ctr / 100), np.floor(impr))      # count noise cannot produce more clicks than impressions
     obs = clicks / impr * 100
     res = p[["date", "ad_id", "audience_id", "creative_id"]].copy()
     for name, arr in [("impressions", impr), ("clicks", clicks), ("ctr_observed", obs)]:

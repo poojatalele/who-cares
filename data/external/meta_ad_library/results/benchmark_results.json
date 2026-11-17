@@ -1,0 +1,625 @@
+{
+  "code_commit": "aafc86cd6172b8f6d18f504560e670a0e54c217f",
+  "uncommitted_adsim_changes": false,
+  "engine_sha256": "5b55ff61478506eb525e2b4f8fd9bdbf34c9d0ec171fe2cfcec6e3d6b0997f68",
+  "source": "Meta Ad Library public records for the Sephora France and Sephora Italy pages (see real/real_manifest.json)",
+  "read_this_first": [
+    "Part A uses real published numbers only. Part B uses simulated clicks, impressions and spend.",
+    "The Ad Library publishes no clicks, spend, CTR or CPM for commercial ads, so no result here measures accuracy on Sephora's actual performance.",
+    "The US Sephora page has no audience or reach data (EU-only disclosure) and is not part of any test."
+  ],
+  "part_a_real_only": {
+    "A1_longevity_and_reach_from_copy": {
+      "encoder": "hf:sentence-transformers/paraphrase-multilingual-MiniLM-L12-v2",
+      "train_ads": 1027,
+      "test_ads": 448,
+      "test_starts_on": "2026-10-19",
+      "test_ads_with_copy_unseen_in_train": 339,
+      "outcomes": {
+        "days_running": {
+          "all_test_ads": {
+            "ads": 448,
+            "spearman_copy_model": -0.14300900654088827,
+            "spearman_format_average": -0.0021269840163574034,
+            "r2_copy_model_vs_train_mean": -0.14978605506898157,
+            "r2_format_average_vs_train_mean": -0.027779692480929263
+          },
+          "copy_unseen_in_train": {
+            "ads": 339,
+            "spearman_copy_model": -0.14778449232844676,
+            "spearman_format_average": 0.07226115320540706,
+            "r2_copy_model_vs_train_mean": -0.06410723881332392,
+            "r2_format_average_vs_train_mean": -0.01868254885915599
+          }
+        },
+        "eu_total_reach": {
+          "all_test_ads": {
+            "ads": 448,
+            "spearman_copy_model": 0.25566187905431115,
+            "spearman_format_average": 0.39172717068115326,
+            "r2_copy_model_vs_train_mean": 0.065125617752131,
+            "r2_format_average_vs_train_mean": 0.2101530569988953
+          },
+          "copy_unseen_in_train": {
+            "ads": 339,
+            "spearman_copy_model": 0.08811539684802956,
+            "spearman_format_average": 0.37402999682739985,
+            "r2_copy_model_vs_train_mean": -0.17059944454882348,
+            "r2_format_average_vs_train_mean": 0.21165213422475204
+          }
+        }
+      },
+      "caveats": [
+        "Only finished ads are scored; recent ads that are still running are excluded, so later ads skew short",
+        "Longevity and reach are advertiser decisions (budget, schedule), not a measure of response"
+      ]
+    },
+    "A2_audience_reach_split_from_creative": {
+      "encoder": "hf:sentence-transformers/paraphrase-multilingual-MiniLM-L12-v2",
+      "train_ads": 1153,
+      "test_ads": 530,
+      "test_starts_on": "2026-10-27",
+      "audiences": [
+        "female|18-24",
+        "female|25-34",
+        "female|35-44",
+        "female|45-54",
+        "female|55-64",
+        "female|65+",
+        "male|18-24",
+        "male|25-34",
+        "male|35-44",
+        "male|45-54",
+        "male|55-64",
+        "male|65+"
+      ],
+      "metric": "share misallocated = half the summed absolute difference between predicted and real reach shares (0 = perfect, 1 = entirely wrong)",
+      "all_test_ads": {
+        "page_average": {
+          "ads": 530,
+          "mean_share_misallocated": 0.3298662089891431,
+          "median_share_misallocated": 0.2955539315195792,
+          "largest_audience_named_correctly": 0.530188679245283
+        },
+        "same_targeting_average": {
+          "ads": 530,
+          "mean_share_misallocated": 0.24341166632887043,
+          "median_share_misallocated": 0.20451937322986635,
+          "largest_audience_named_correctly": 0.569811320754717
+        },
+        "same_targeting_plus_creative": {
+          "ads": 530,
+          "mean_share_misallocated": 0.23997045754893542,
+          "median_share_misallocated": 0.18871934691394612,
+          "largest_audience_named_correctly": 0.5660377358490566
+        }
+      },
+      "copy_unseen_in_train": {
+        "page_average": {
+          "ads": 426,
+          "mean_share_misallocated": 0.3427628395002657,
+          "median_share_misallocated": 0.305711417694462,
+          "largest_audience_named_correctly": 0.45774647887323944
+        },
+        "same_targeting_average": {
+          "ads": 426,
+          "mean_share_misallocated": 0.259906860340347,
+          "median_share_misallocated": 0.22077912533893426,
+          "largest_audience_named_correctly": 0.4953051643192488
+        },
+        "same_targeting_plus_creative": {
+          "ads": 426,
+          "mean_share_misallocated": 0.2557370076249966,
+          "median_share_misallocated": 0.21339569951864445,
+          "largest_audience_named_correctly": 0.4953051643192488
+        }
+      },
+      "test_ads_whose_targeting_was_never_seen_in_train": 39,
+      "caveat": "Reach split is mostly set by the advertiser's targeting; what is left is Meta's delivery, which favours likely responders but is not a response measure"
+    }
+  },
+  "part_b_engine_on_simulated_performance": {
+    "what_is_real": "creatives (copy, format), launch and end dates, age x gender audiences, reach per audience",
+    "what_is_simulated": "daily impressions, clicks, spend (see simulated/simulation_spec.json)",
+    "engine": {
+      "ctr_model": "poisson",
+      "encoder": "hf:sentence-transformers/paraphrase-multilingual-MiniLM-L12-v2",
+      "creative_protocol": "train_only",
+      "text_projection_fitted_on_creatives": 388,
+      "trained_through": "2026-10-22",
+      "budget_elasticity": {
+        "ctr": -0.1,
+        "cpm": 0.3
+      },
+      "tree_inputs_left_to_linear_model": [
+        "creative_id"
+      ],
+      "missing_optional_inputs": [
+        "budget",
+        "season index"
+      ],
+      "train_rows_excluded": {
+        "suspicious_zero_clicks": 2
+      },
+      "calibration": {
+        "warm_rows": 19407,
+        "cold_rows": 5383,
+        "holdout_start": "2026-10-09",
+        "holdout_days": 14,
+        "nominal_coverage": 0.8,
+        "cold_source": "held-out new ads"
+      }
+    },
+    "split": {
+      "train_rows": 90793,
+      "test_rows_scored": 48806,
+      "test_rows_excluded_by_quality_rule": {
+        "suspicious_zero_clicks": 3
+      },
+      "test_days": [
+        "2026-10-23",
+        "2026-11-13"
+      ],
+      "test_rows_seen_ads": 21139,
+      "test_rows_new_ads_known_creative": 6065,
+      "test_rows_new_creatives": 21602
+    },
+    "accuracy": {
+      "adsim_engine": {
+        "all_test_rows": {
+          "rows": 48806,
+          "zero_click_rows": 6701,
+          "ctr_click_error_share": 0.23130257472316493,
+          "ctr_total_clicks_bias": -0.0869054660813735,
+          "ctr_mae_pp": 0.4423463258233482,
+          "ctr_log_error_vs_planted_truth": 0.1477520252333918,
+          "ctr_log_error_vs_planted_truth_impression_weighted": 0.15480645970056345,
+          "cpm_log_error_vs_observed": 0.07882464544275011,
+          "cpm_log_error_vs_planted_truth": 0.04935516403561942,
+          "cpm_bias_vs_observed": -0.04871295224088564
+        },
+        "ads_seen_in_training": {
+          "rows": 21139,
+          "zero_click_rows": 4857,
+          "ctr_click_error_share": 0.20334460482696548,
+          "ctr_total_clicks_bias": -0.02084849440976899,
+          "ctr_mae_pp": 0.45790530638169136,
+          "ctr_log_error_vs_planted_truth": 0.09995418124932277,
+          "ctr_log_error_vs_planted_truth_impression_weighted": 0.060571527288956095,
+          "cpm_log_error_vs_observed": 0.06862032645513655,
+          "cpm_log_error_vs_planted_truth": 0.027099550328824554,
+          "cpm_bias_vs_observed": -0.02532801506053756
+        },
+        "new_ads_known_creative": {
+          "rows": 6065,
+          "zero_click_rows": 253,
+          "ctr_click_error_share": 0.19061861114189266,
+          "ctr_total_clicks_bias": -0.036333222335000026,
+          "ctr_mae_pp": 0.37195369823189806,
+          "ctr_log_error_vs_planted_truth": 0.13680003770218394,
+          "ctr_log_error_vs_planted_truth_impression_weighted": 0.11272573872586697,
+          "cpm_log_error_vs_observed": 0.07551687253428813,
+          "cpm_log_error_vs_planted_truth": 0.046101421451028184,
+          "cpm_bias_vs_observed": -0.046121648680472645
+        },
+        "new_creatives": {
+          "rows": 21602,
+          "zero_click_rows": 1591,
+          "ctr_click_error_share": 0.24775510682713706,
+          "ctr_total_clicks_bias": -0.1156619501323568,
+          "ctr_mae_pp": 0.44688433139317174,
+          "ctr_log_error_vs_planted_truth": 0.19760029985407557,
+          "ctr_log_error_vs_planted_truth_impression_weighted": 0.19688596732563335,
+          "cpm_log_error_vs_observed": 0.0897389469782091,
+          "cpm_log_error_vs_planted_truth": 0.0720472928627411,
+          "cpm_bias_vs_observed": -0.07232421245518447
+        }
+      },
+      "advertiser_average": {
+        "all_test_rows": {
+          "rows": 48806,
+          "zero_click_rows": 6701,
+          "ctr_click_error_share": 0.3903812944924853,
+          "ctr_total_clicks_bias": -0.028747604386348602,
+          "ctr_mae_pp": 0.6230083210256083,
+          "ctr_log_error_vs_planted_truth": 0.463096832796294,
+          "ctr_log_error_vs_planted_truth_impression_weighted": 0.37254039882277046,
+          "cpm_log_error_vs_observed": 0.22170790750291383,
+          "cpm_log_error_vs_planted_truth": 0.2154576446581887,
+          "cpm_bias_vs_observed": -0.1023850608119716
+        },
+        "ads_seen_in_training": {
+          "rows": 21139,
+          "zero_click_rows": 4857,
+          "ctr_click_error_share": 0.49577498188348335,
+          "ctr_total_clicks_bias": 0.1430699964180735,
+          "ctr_mae_pp": 0.736829611130638,
+          "ctr_log_error_vs_planted_truth": 0.6321787069132723,
+          "ctr_log_error_vs_planted_truth_impression_weighted": 0.47551300290091636,
+          "cpm_log_error_vs_observed": 0.2324916400311914,
+          "cpm_log_error_vs_planted_truth": 0.2273220325051302,
+          "cpm_bias_vs_observed": -0.09943281610892116
+        },
+        "new_ads_known_creative": {
+          "rows": 6065,
+          "zero_click_rows": 253,
+          "ctr_click_error_share": 0.2820659610914685,
+          "ctr_total_clicks_bias": 0.0408712880828912,
+          "ctr_mae_pp": 0.48407582960923246,
+          "ctr_log_error_vs_planted_truth": 0.30810986763165993,
+          "ctr_log_error_vs_planted_truth_impression_weighted": 0.2433200219747744,
+          "cpm_log_error_vs_observed": 0.20646610509251764,
+          "cpm_log_error_vs_planted_truth": 0.19792703297378433,
+          "cpm_bias_vs_observed": -0.10018462485060604
+        },
+        "new_creatives": {
+          "rows": 21602,
+          "zero_click_rows": 1591,
+          "ctr_click_error_share": 0.38647407260464467,
+          "ctr_total_clicks_bias": -0.08979309659254697,
+          "ctr_mae_pp": 0.5506334163366952,
+          "ctr_log_error_vs_planted_truth": 0.3411532260360265,
+          "ctr_log_error_vs_planted_truth_impression_weighted": 0.3708686612047829,
+          "cpm_log_error_vs_observed": 0.21543460918348933,
+          "cpm_log_error_vs_planted_truth": 0.2087694613959637,
+          "cpm_bias_vs_observed": -0.10589182615237826
+        }
+      },
+      "audience_average": {
+        "all_test_rows": {
+          "rows": 48806,
+          "zero_click_rows": 6701,
+          "ctr_click_error_share": 0.26917597814625893,
+          "ctr_total_clicks_bias": -0.037629843883927094,
+          "ctr_mae_pp": 0.5450861421495263,
+          "ctr_log_error_vs_planted_truth": 0.3414534980562157,
+          "ctr_log_error_vs_planted_truth_impression_weighted": 0.22363346019737157,
+          "cpm_log_error_vs_observed": 0.09851181049383809,
+          "cpm_log_error_vs_planted_truth": 0.08592207342154765,
+          "cpm_bias_vs_observed": -0.08098421967488148
+        },
+        "ads_seen_in_training": {
+          "rows": 21139,
+          "zero_click_rows": 4857,
+          "ctr_click_error_share": 0.3699946811221325,
+          "ctr_total_clicks_bias": 0.12212046676834643,
+          "ctr_mae_pp": 0.6502054601124382,
+          "ctr_log_error_vs_planted_truth": 0.47455130461700695,
+          "ctr_log_error_vs_planted_truth_impression_weighted": 0.3182225349393036,
+          "cpm_log_error_vs_observed": 0.09328731906336572,
+          "cpm_log_error_vs_planted_truth": 0.07859111298900763,
+          "cpm_bias_vs_observed": -0.07069649241171706
+        },
+        "new_ads_known_creative": {
+          "rows": 6065,
+          "zero_click_rows": 253,
+          "ctr_click_error_share": 0.23469401224007178,
+          "ctr_total_clicks_bias": 0.030274747930348456,
+          "ctr_mae_pp": 0.421243394725368,
+          "ctr_log_error_vs_planted_truth": 0.22442990991115444,
+          "ctr_log_error_vs_planted_truth_impression_weighted": 0.18208928584946424,
+          "cpm_log_error_vs_observed": 0.09984049620287219,
+          "cpm_log_error_vs_planted_truth": 0.08827124176841188,
+          "cpm_bias_vs_observed": -0.0864108107216071
+        },
+        "new_creatives": {
+          "rows": 21602,
+          "zero_click_rows": 1591,
+          "ctr_click_error_share": 0.25008568902349576,
+          "ctr_total_clicks_bias": -0.09509307660565014,
+          "ctr_mae_pp": 0.47699008626162354,
+          "ctr_log_error_vs_planted_truth": 0.24406406787434495,
+          "ctr_log_error_vs_planted_truth_impression_weighted": 0.2025848593454473,
+          "cpm_log_error_vs_observed": 0.10325128116893596,
+          "cpm_log_error_vs_planted_truth": 0.09243635295861517,
+          "cpm_bias_vs_observed": -0.08952787266616198
+        }
+      },
+      "last_7_days": {
+        "all_test_rows": {
+          "rows": 48806,
+          "zero_click_rows": 6701,
+          "ctr_click_error_share": 0.2589334818384078,
+          "ctr_total_clicks_bias": -0.09723456176693068,
+          "ctr_mae_pp": 0.47515013623588104,
+          "ctr_log_error_vs_planted_truth": 0.24330667484001858,
+          "ctr_log_error_vs_planted_truth_impression_weighted": 0.19892775333175652,
+          "cpm_log_error_vs_observed": 0.07453568974684165,
+          "cpm_log_error_vs_planted_truth": 0.04105368736469551,
+          "cpm_bias_vs_observed": -0.03243698157032927
+        },
+        "ads_seen_in_training": {
+          "rows": 21139,
+          "zero_click_rows": 4857,
+          "ctr_click_error_share": 0.22946904871756008,
+          "ctr_total_clicks_bias": 0.05194513132649359,
+          "ctr_mae_pp": 0.5046843210719097,
+          "ctr_log_error_vs_planted_truth": 0.2717589524138617,
+          "ctr_log_error_vs_planted_truth_impression_weighted": 0.1277961077289347,
+          "cpm_log_error_vs_observed": 0.07327973957647799,
+          "cpm_log_error_vs_planted_truth": 0.03623250603892597,
+          "cpm_bias_vs_observed": -0.02262550230338733
+        },
+        "new_ads_known_creative": {
+          "rows": 6065,
+          "zero_click_rows": 253,
+          "ctr_click_error_share": 0.22598044803175193,
+          "ctr_total_clicks_bias": -0.043825836250790395,
+          "ctr_mae_pp": 0.40090650962104507,
+          "ctr_log_error_vs_planted_truth": 0.19723249926455189,
+          "ctr_log_error_vs_planted_truth_impression_weighted": 0.16467087865954064,
+          "cpm_log_error_vs_observed": 0.0738680176930695,
+          "cpm_log_error_vs_planted_truth": 0.04090381670009558,
+          "cpm_bias_vs_observed": -0.03779084365691956
+        },
+        "new_creatives": {
+          "rows": 21602,
+          "zero_click_rows": 1591,
+          "ctr_click_error_share": 0.2740688128694784,
+          "ctr_total_clicks_bias": -0.14867409575737778,
+          "ctr_mae_pp": 0.4670936813784683,
+          "ctr_log_error_vs_planted_truth": 0.22840005412118403,
+          "ctr_log_error_vs_planted_truth_impression_weighted": 0.23132123566075008,
+          "cpm_log_error_vs_observed": 0.07595217718584936,
+          "cpm_log_error_vs_planted_truth": 0.04581361318759342,
+          "cpm_bias_vs_observed": -0.04053501354277235
+        }
+      }
+    },
+    "accuracy_by_test_week": {
+      "test_week_1": {
+        "adsim_engine": {
+          "rows": 13887,
+          "ctr_click_error_share": 0.2231783723995398,
+          "ctr_log_error_vs_planted_truth": 0.12652940205933627,
+          "cpm_log_error_vs_observed": 0.07033577969294597,
+          "cpm_bias_vs_observed": -0.026836183635193925
+        },
+        "advertiser_average": {
+          "rows": 13887,
+          "ctr_click_error_share": 0.3717808837881129,
+          "ctr_log_error_vs_planted_truth": 0.49156860706676686,
+          "cpm_log_error_vs_observed": 0.22024733033775096,
+          "cpm_bias_vs_observed": -0.09061444869706328
+        },
+        "audience_average": {
+          "rows": 13887,
+          "ctr_click_error_share": 0.2842460631216724,
+          "ctr_log_error_vs_planted_truth": 0.35834950113177266,
+          "cpm_log_error_vs_observed": 0.08897425522466698,
+          "cpm_bias_vs_observed": -0.06646606146575453
+        },
+        "last_7_days": {
+          "rows": 13887,
+          "ctr_click_error_share": 0.23685810391179427,
+          "ctr_log_error_vs_planted_truth": 0.2365428738159767,
+          "cpm_log_error_vs_observed": 0.07075431563303651,
+          "cpm_bias_vs_observed": -0.015284448108047776
+        }
+      },
+      "test_week_2": {
+        "adsim_engine": {
+          "rows": 15639,
+          "ctr_click_error_share": 0.25424155364218864,
+          "ctr_log_error_vs_planted_truth": 0.1499029557535317,
+          "cpm_log_error_vs_observed": 0.07673776286264385,
+          "cpm_bias_vs_observed": -0.04691569511842422
+        },
+        "advertiser_average": {
+          "rows": 15639,
+          "ctr_click_error_share": 0.3549216357622015,
+          "ctr_log_error_vs_planted_truth": 0.4550136052325775,
+          "cpm_log_error_vs_observed": 0.2178917629775784,
+          "cpm_bias_vs_observed": -0.09977965575792541
+        },
+        "audience_average": {
+          "rows": 15639,
+          "ctr_click_error_share": 0.28126220303648214,
+          "ctr_log_error_vs_planted_truth": 0.340271861133628,
+          "cpm_log_error_vs_observed": 0.09668399592958318,
+          "cpm_bias_vs_observed": -0.0796335513386003
+        },
+        "last_7_days": {
+          "rows": 15639,
+          "ctr_click_error_share": 0.2723717041189231,
+          "ctr_log_error_vs_planted_truth": 0.24494747607183315,
+          "cpm_log_error_vs_observed": 0.072561310511152,
+          "cpm_bias_vs_observed": -0.03228372064967801
+        }
+      },
+      "test_week_3": {
+        "adsim_engine": {
+          "rows": 17199,
+          "ctr_click_error_share": 0.22323551591507487,
+          "ctr_log_error_vs_planted_truth": 0.161459185780407,
+          "cpm_log_error_vs_observed": 0.08686309074508834,
+          "cpm_bias_vs_observed": -0.06602238926820256
+        },
+        "advertiser_average": {
+          "rows": 17199,
+          "ctr_click_error_share": 0.42540287829090734,
+          "ctr_log_error_vs_planted_truth": 0.444019760161164,
+          "cpm_log_error_vs_observed": 0.22611442318600777,
+          "cpm_bias_vs_observed": -0.11308408414770237
+        },
+        "audience_average": {
+          "rows": 17199,
+          "ctr_click_error_share": 0.2510310013644652,
+          "ctr_log_error_vs_planted_truth": 0.3238162473656303,
+          "cpm_log_error_vs_observed": 0.10677109404894879,
+          "cpm_bias_vs_observed": -0.09222865059034584
+        },
+        "last_7_days": {
+          "rows": 17199,
+          "ctr_click_error_share": 0.2682011431119323,
+          "ctr_log_error_vs_planted_truth": 0.243531560669791,
+          "cpm_log_error_vs_observed": 0.078793593572406,
+          "cpm_bias_vs_observed": -0.04447981652211028
+        }
+      },
+      "test_week_4": {
+        "adsim_engine": {
+          "rows": 2081,
+          "ctr_click_error_share": 0.21565614869576338,
+          "ctr_log_error_vs_planted_truth": 0.15992439974830086,
+          "cpm_log_error_vs_observed": 0.08472008733746253,
+          "cpm_bias_vs_observed": -0.06514975297735452
+        },
+        "advertiser_average": {
+          "rows": 2081,
+          "ctr_click_error_share": 0.4153869911974592,
+          "ctr_log_error_vs_planted_truth": 0.4915123247840438,
+          "cpm_log_error_vs_observed": 0.2237146619915273,
+          "cpm_bias_vs_observed": -0.11208804866815919
+        },
+        "audience_average": {
+          "rows": 2081,
+          "ctr_click_error_share": 0.2591520293658751,
+          "ctr_log_error_vs_planted_truth": 0.38335061470660836,
+          "cpm_log_error_vs_observed": 0.10763329253565143,
+          "cpm_bias_vs_observed": -0.0950850355548313
+        },
+        "last_7_days": {
+          "rows": 2081,
+          "ctr_click_error_share": 0.233402166824558,
+          "ctr_log_error_vs_planted_truth": 0.2742536248497575,
+          "cpm_log_error_vs_observed": 0.07941679079897064,
+          "cpm_bias_vs_observed": -0.048520288342595835
+        }
+      }
+    },
+    "interval_coverage": {
+      "target": 0.8,
+      "interval_status": "empirical 80% bands from 14 held-out days starting 2026-10-09; coverage on later data is reported by `adsim validate`, not assumed",
+      "ctr_simulated_range_seen_ads": 0.7995174795401864,
+      "ctr_simulated_range_new_ads": 0.7914121516608233,
+      "cpm_band_seen_ads": 0.7951653342163774,
+      "cpm_band_new_ads": 0.7800267466657028
+    },
+    "audience_ranking": {
+      "sephora_france": {
+        "audiences": 12,
+        "observed_best_audience": "FR|female|45-54",
+        "adsim_engine": {
+          "rank_correlation_with_observed": 0.9300699300699302,
+          "rank_correlation_with_planted_truth": 0.9440559440559443,
+          "best_audience_named": "FR|female|45-54",
+          "best_audience_correct": true,
+          "top3_overlap": 3
+        },
+        "advertiser_average": {
+          "rank_correlation_with_observed": -0.39304183206703214,
+          "rank_correlation_with_planted_truth": -0.39304183206703214,
+          "best_audience_named": "FR|female|18-24",
+          "best_audience_correct": false,
+          "top3_overlap": 1
+        },
+        "audience_average": {
+          "rank_correlation_with_observed": 0.8951048951048951,
+          "rank_correlation_with_planted_truth": 0.9160839160839163,
+          "best_audience_named": "FR|female|45-54",
+          "best_audience_correct": true,
+          "top3_overlap": 2
+        },
+        "last_7_days": {
+          "rank_correlation_with_observed": 0.9300699300699302,
+          "rank_correlation_with_planted_truth": 0.9440559440559443,
+          "best_audience_named": "FR|female|45-54",
+          "best_audience_correct": true,
+          "top3_overlap": 3
+        }
+      },
+      "sephora_italia": {
+        "audiences": 12,
+        "observed_best_audience": "IT|male|25-34",
+        "adsim_engine": {
+          "rank_correlation_with_observed": 1.0,
+          "rank_correlation_with_planted_truth": 1.0,
+          "best_audience_named": "IT|male|25-34",
+          "best_audience_correct": true,
+          "top3_overlap": 3
+        },
+        "advertiser_average": {
+          "rank_correlation_with_observed": 0.17739371879672478,
+          "rank_correlation_with_planted_truth": 0.17739371879672478,
+          "best_audience_named": "IT|male|55-64",
+          "best_audience_correct": false,
+          "top3_overlap": 1
+        },
+        "audience_average": {
+          "rank_correlation_with_observed": 1.0,
+          "rank_correlation_with_planted_truth": 1.0,
+          "best_audience_named": "IT|male|25-34",
+          "best_audience_correct": true,
+          "top3_overlap": 3
+        },
+        "last_7_days": {
+          "rank_correlation_with_observed": 0.9580419580419581,
+          "rank_correlation_with_planted_truth": 0.9580419580419581,
+          "best_audience_named": "IT|female|18-24",
+          "best_audience_correct": false,
+          "top3_overlap": 3
+        }
+      }
+    },
+    "best_audience_for_new_creatives": {
+      "new_creatives_scored": 165,
+      "mean_audiences_per_creative": 6.666666666666667,
+      "chance_level": 0.19161091433818705,
+      "adsim_engine": {
+        "best_audience_correct": 0.7454545454545455,
+        "true_best_in_top2": 0.9030303030303031,
+        "share_of_best_ctr_kept": 0.9758625027501582,
+        "mean_rank_correlation": 0.829389196661924
+      },
+      "advertiser_average": {
+        "best_audience_correct": 0.2545454545454545,
+        "true_best_in_top2": 0.4303030303030303,
+        "share_of_best_ctr_kept": 0.7059292487867403,
+        "mean_rank_correlation": 0.016480327360998935
+      },
+      "audience_average": {
+        "best_audience_correct": 0.7272727272727273,
+        "true_best_in_top2": 0.9151515151515152,
+        "share_of_best_ctr_kept": 0.9711055670539326,
+        "mean_rank_correlation": 0.827217328126419
+      },
+      "last_7_days": {
+        "best_audience_correct": 0.6727272727272727,
+        "true_best_in_top2": 0.8424242424242424,
+        "share_of_best_ctr_kept": 0.9515868149770774,
+        "mean_rank_correlation": 0.828586766768585
+      }
+    },
+    "archetypes_vs_planted": {
+      "sephora_france": {
+        "rank_correlation_engine_ctr_level_vs_planted": 0.8391608391608393,
+        "rank_correlation_engine_cpm_level_vs_planted": 0.9790209790209792,
+        "audiences_per_archetype": {
+          "A1": 4,
+          "A2": 4,
+          "A3": 4
+        }
+      },
+      "sephora_italia": {
+        "rank_correlation_engine_ctr_level_vs_planted": 0.9860139860139862,
+        "rank_correlation_engine_cpm_level_vs_planted": 1.0,
+        "audiences_per_archetype": {
+          "A0": 1,
+          "A1": 1,
+          "A2": 3,
+          "A3": 7
+        }
+      }
+    },
+    "outputs_above_100pct_ctr": 0,
+    "seconds": 66.7
+  },
+  "inputs": {
+    "real/ads.csv": "6ade2b9856ae09e29a691bb17b7e31a11a76d5bd99f50d3549e764e17377576a",
+    "real/reach_by_segment.csv": "b224770658e77f7bab612113a9567db3ec3305d86d20f9ba9d836714fc095b8d",
+    "real/creatives.csv": "71bcfbb3f9e1e5f82fba8fe9c27ac49a74af4171cbed659db8e1c7153f1f619f",
+    "simulated/daily.csv.gz": "8f66921067b03a164dadddbedc7d1486b6c9bc898675b062b97f660c5447cc2c",
+    "simulated/truth.csv.gz": "1dd744ccced6e1fef5825b17500d5feda2494f6ecdd4b46e56facf10d2e20191"
+  }
+}

@@ -1,0 +1,6 @@
+# Build/audit and optional numerical-component benchmark. Python 3.12.14 used.
+numpy==2.3.5
+pyarrow==26.0.1
+requests==2.34.2
+pandas==2.2.3
+scikit-learn==1.8.0

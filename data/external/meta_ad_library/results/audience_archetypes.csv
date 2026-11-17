@@ -1,0 +1,25 @@
+advertiser_id,audience_id,archetype,ctr_level_pct,cpm_level_eur,behaviour,planted_ctr_effect,planted_cpm_effect
+sephora_france,FR|female|18-24,A1,0.9503355508105118,7.926428184519994,responds below its advertiser's average; costs less to reach; rarely sees an ad twice (large pool),-0.2517,0.02451
+sephora_france,FR|female|25-34,A2,1.3717755657127602,6.8057404551727325,responds above its advertiser's average; costs less to reach; rarely sees an ad twice (large pool),0.1723,-0.12841
+sephora_france,FR|female|35-44,A1,1.0447250163774369,9.882795931092886,responds below its advertiser's average; costs more to reach; rarely sees an ad twice (large pool),-0.07021,0.25937
+sephora_france,FR|female|45-54,A2,1.4834812421689492,6.415054200456132,responds above its advertiser's average; costs less to reach; rarely sees an ad twice (large pool),0.26423,-0.18393
+sephora_france,FR|female|55-64,A1,0.6830813602782472,9.32401404222661,responds below its advertiser's average; costs more to reach; rarely sees an ad twice (large pool),-0.57377,0.20895
+sephora_france,FR|female|65+,A3,1.0529140703937803,12.399723236193804,responds below its advertiser's average; costs much more to reach; rarely sees an ad twice (large pool),-0.25197,0.50192
+sephora_france,FR|male|18-24,A3,1.0718519317272692,8.376985504217485,responds below its advertiser's average; costs about average to reach; sees ads repeatedly (small pool),-0.15588,0.10446
+sephora_france,FR|male|25-34,A3,1.3987362631803815,10.13897315984401,responds above its advertiser's average; costs more to reach; sees ads repeatedly (small pool),0.02283,0.29234
+sephora_france,FR|male|35-44,A2,1.2983143084138076,7.712534522678064,responds above its advertiser's average; costs less to reach; rarely sees an ad twice (large pool),-0.03842,0.03213
+sephora_france,FR|male|45-54,A2,1.234977880223918,6.7214380717854745,responds near its advertiser's average; costs less to reach; rarely sees an ad twice (large pool),-0.12718,-0.11022
+sephora_france,FR|male|55-64,A1,1.3755453192565925,10.012740042358253,responds above its advertiser's average; costs more to reach; rarely sees an ad twice (large pool),-0.07268,0.30551
+sephora_france,FR|male|65+,A3,1.4202122347978363,11.335482472484244,responds above its advertiser's average; costs much more to reach; sees ads repeatedly (small pool),-0.00266,0.41797
+sephora_italia,IT|female|18-24,A3,1.748154164167933,5.073525826416279,responds well above its advertiser's average; costs about average to reach; rarely sees an ad twice (large pool),0.42738,-0.07626
+sephora_italia,IT|female|25-34,A2,0.6293790985440534,3.3755050582737427,responds below its advertiser's average; costs less to reach; rarely sees an ad twice (large pool),-0.56725,-0.48537
+sephora_italia,IT|female|35-44,A3,1.015769482367845,6.4274621516277906,responds near its advertiser's average; costs much more to reach; rarely sees an ad twice (large pool),-0.00715,0.16595
+sephora_italia,IT|female|45-54,A3,1.1818615062406401,6.4309889282476185,responds above its advertiser's average; costs much more to reach; rarely sees an ad twice (large pool),0.09634,0.17235
+sephora_italia,IT|female|55-64,A0,0.4747052881856441,4.2484796462244105,responds below its advertiser's average; costs less to reach; rarely sees an ad twice (large pool),-0.86698,-0.24005
+sephora_italia,IT|female|65+,A3,1.693376246511041,6.646175165935041,responds well above its advertiser's average; costs much more to reach; rarely sees an ad twice (large pool),0.27759,0.19548
+sephora_italia,IT|male|18-24,A3,0.975031624168214,6.688794772335293,responds below its advertiser's average; costs much more to reach; rarely sees an ad twice (large pool),-0.29278,0.2149
+sephora_italia,IT|male|25-34,A3,2.265330035887009,4.901808583715325,responds well above its advertiser's average; costs less to reach; rarely sees an ad twice (large pool),0.54914,-0.10393
+sephora_italia,IT|male|35-44,A1,0.9362564400886403,5.739006678592465,responds below its advertiser's average; costs more to reach; rarely sees an ad twice (large pool),-0.29238,0.06603
+sephora_italia,IT|male|45-54,A2,1.006262160134399,3.4512163313519175,responds near its advertiser's average; costs less to reach; rarely sees an ad twice (large pool),-0.21078,-0.44257
+sephora_italia,IT|male|55-64,A3,1.4778533536240752,5.842913705382773,responds well above its advertiser's average; costs more to reach; rarely sees an ad twice (large pool),0.16687,0.07507
+sephora_italia,IT|male|65+,A2,0.7224741090812323,4.3165218083305685,responds below its advertiser's average; costs less to reach; sees ads repeatedly (small pool),-0.57186,-0.2244

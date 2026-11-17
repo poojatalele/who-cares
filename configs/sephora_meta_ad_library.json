@@ -1,0 +1,14 @@
+{
+  "name": "sephora_meta_ad_library_semi_synthetic",
+  "note": "Real Sephora France/Italy creatives, launch dates and age x gender audiences from the Meta Ad Library; impressions, clicks and spend are SIMULATED (scripts/meta_ad_library/simulate.py). Not Sephora's actual results.",
+  "root": "data/external/meta_ad_library",
+  "history": {"file": "simulated/daily.csv.gz", "columns": {
+    "date": "date", "ad_id": "ad_id", "audience_id": "audience_id", "creative_id": "creative_id",
+    "advertiser_id": "advertiser_id", "impressions": "impressions", "clicks": "clicks", "spend": "spend", "reach": "reach"}},
+  "ads": {"file": "simulated/ad_launch.csv", "columns": {"ad_id": "ad_id", "launch_date": "launch_date"}},
+  "creatives": {"file": "real/creatives.csv", "columns": {"creative_id": "creative_id"},
+    "text": ["headline", "body", "link_description", "card_text"],
+    "categorical": ["display_format", "cta_type"]},
+  "encoder": "auto",
+  "archetypes": 4
+}

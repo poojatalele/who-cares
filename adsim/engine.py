@@ -28,6 +28,7 @@ KPIS = ("ctr", "cpm")
 Z80 = 1.2816
 MAX_TREE_LEVELS = 200          # sklearn's histogram trees accept at most 255 categories
 DENSE_CELLS = 2e7
+MAX_CTR_PCT = 100.0             # CTR is a percentage: a rate above 100% would mean more clicks than impressions
 
 
 class _Hier:
@@ -276,6 +277,9 @@ class Engine:
             else:
                 q = np.where(cold, band["cold"], band["warm"])
                 out[kpi + "_lo"], out[kpi + "_hi"] = out[kpi] * np.exp(-q), out[kpi] * np.exp(q)
+            if kpi == "ctr":                        # the log-linear model is unbounded above; probability is not
+                for col in ("ctr", "ctr_lo", "ctr_hi"):
+                    out[col] = np.minimum(out[col], MAX_CTR_PCT)
         out["new_ad"] = cold
         out["new_creative"] = ~d["creative_id"].isin(self.seen_creatives).values
         out["budget_extrapolated"] = (lbr > self.seen_lbr[1] + 1e-9) | (lbr < self.seen_lbr[0] - 1e-9)

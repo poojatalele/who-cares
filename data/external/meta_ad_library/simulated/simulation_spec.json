@@ -1,0 +1,165 @@
+{
+  "seed": 20261114,
+  "window": {
+    "start": "2026-09-01",
+    "end": "2026-11-13",
+    "why": "last full day before the download; earlier months have too few French ads"
+  },
+  "test_share_of_days": 0.3,
+  "audience": "country x gender x age band as published by Meta (female/male, six age bands)",
+  "min_cell_reach": 1000,
+  "impressions": {
+    "frequency": 1.5,
+    "day_noise_sd": 0.35,
+    "rule": "real lifetime reach of the ad in the audience x frequency, spread evenly over the ad's real live days, x log-normal day noise"
+  },
+  "ctr": {
+    "base_pct": 1.0,
+    "audience_sd": 0.3,
+    "format_sd": 0.2,
+    "promo_lift": 0.2,
+    "creative_sd": 0.2,
+    "ad_audience_sd": 0.1,
+    "delivery_skew_gamma": 0.15,
+    "fatigue_per_week": -0.05,
+    "weekday_sd": 0.05,
+    "day_noise_sd": 0.15,
+    "max_rate": 0.5,
+    "rule": "log CTR = log base + audience + format + promo + creative + ad-in-audience + gamma x real delivery skew + fatigue x weeks live + weekday + day noise; clicks ~ Binomial(impressions, CTR)"
+  },
+  "cpm": {
+    "base_eur": {
+      "sephora_france": 7.0,
+      "sephora_italia": 5.0
+    },
+    "audience_sd": 0.2,
+    "format_sd": 0.1,
+    "trend_per_day": 0.002,
+    "day_noise_sd": 0.08,
+    "rule": "log CPM = log base + audience + format + trend x day index + day noise; spend = impressions x CPM / 1000"
+  },
+  "promo_pattern": "\\d{1,2}\\s?%|black\\s*friday|promo|scont[oi]|offert[ae]|offres?\\b|réduction|remise|saldi|soldes|\\bsale\\b|\\bcod(?:e|ice)\\b",
+  "delivery_skew": "log of the ad's real reach share in the audience over the average share among same-page ads with the same targeting; standardised, clipped to +/-2",
+  "assumptions_not_from_data": [
+    "frequency",
+    "every CTR and CPM parameter above",
+    "even spread of delivery over live days",
+    "that delivery skew signals response (gamma)",
+    "the CPM trend standing in for Q4 price pressure"
+  ],
+  "drawn_effects": {
+    "ctr_audience": {
+      "FR|female|18-24": -0.2517,
+      "FR|female|25-34": 0.1723,
+      "FR|female|35-44": -0.07021,
+      "FR|female|45-54": 0.26423,
+      "FR|female|55-64": -0.57377,
+      "FR|female|65+": -0.25197,
+      "FR|male|18-24": -0.15588,
+      "FR|male|25-34": 0.02283,
+      "FR|male|35-44": -0.03842,
+      "FR|male|45-54": -0.12718,
+      "FR|male|55-64": -0.07268,
+      "FR|male|65+": -0.00266,
+      "IT|female|18-24": 0.42738,
+      "IT|female|25-34": -0.56725,
+      "IT|female|35-44": -0.00715,
+      "IT|female|45-54": 0.09634,
+      "IT|female|55-64": -0.86698,
+      "IT|female|65+": 0.27759,
+      "IT|male|18-24": -0.29278,
+      "IT|male|25-34": 0.54914,
+      "IT|male|35-44": -0.29238,
+      "IT|male|45-54": -0.21078,
+      "IT|male|55-64": 0.16687,
+      "IT|male|65+": -0.57186
+    },
+    "ctr_format": {
+      "CAROUSEL": 0.14349,
+      "DCO": 0.07974,
+      "DPA": -0.02115,
+      "IMAGE": 0.0668,
+      "VIDEO": 0.11284
+    },
+    "ctr_weekday": {
+      "0": 0.03644,
+      "1": 0.01583,
+      "2": -0.0266,
+      "3": 0.04061,
+      "4": -0.03084,
+      "5": 0.05002,
+      "6": 0.01675
+    },
+    "cpm_audience": {
+      "FR|female|18-24": 0.02451,
+      "FR|female|25-34": -0.12841,
+      "FR|female|35-44": 0.25937,
+      "FR|female|45-54": -0.18393,
+      "FR|female|55-64": 0.20895,
+      "FR|female|65+": 0.50192,
+      "FR|male|18-24": 0.10446,
+      "FR|male|25-34": 0.29234,
+      "FR|male|35-44": 0.03213,
+      "FR|male|45-54": -0.11022,
+      "FR|male|55-64": 0.30551,
+      "FR|male|65+": 0.41797,
+      "IT|female|18-24": -0.07626,
+      "IT|female|25-34": -0.48537,
+      "IT|female|35-44": 0.16595,
+      "IT|female|45-54": 0.17235,
+      "IT|female|55-64": -0.24005,
+      "IT|female|65+": 0.19548,
+      "IT|male|18-24": 0.2149,
+      "IT|male|25-34": -0.10393,
+      "IT|male|35-44": 0.06603,
+      "IT|male|45-54": -0.44257,
+      "IT|male|55-64": 0.07507,
+      "IT|male|65+": -0.2244
+    },
+    "cpm_format": {
+      "CAROUSEL": -0.12028,
+      "DCO": 0.03535,
+      "DPA": 0.057,
+      "IMAGE": 0.03687,
+      "VIDEO": 0.05158
+    }
+  },
+  "creatives_with_promo_wording": 171,
+  "split": {
+    "train_days": [
+      "2026-09-01",
+      "2026-10-22"
+    ],
+    "test_days": [
+      "2026-10-23",
+      "2026-11-13"
+    ],
+    "train_rows": 90793,
+    "test_rows": 48809,
+    "test_rows_share": 0.3496296614661681,
+    "test_ads_never_seen_in_train": 2927,
+    "test_creatives_never_seen_in_train": 187
+  },
+  "totals": {
+    "rows": 139602,
+    "library_ads": 1266,
+    "ad_x_audience": 8637,
+    "creatives": 575,
+    "audiences": 24,
+    "impressions": 619650203,
+    "clicks": 7535747,
+    "spend_eur": 4184433.3200000003,
+    "zero_click_rows": 20819,
+    "overall_ctr_pct": 1.21612919087513
+  },
+  "real_inputs": {
+    "ads.csv": "6ade2b9856ae09e29a691bb17b7e31a11a76d5bd99f50d3549e764e17377576a",
+    "creatives.csv": "71bcfbb3f9e1e5f82fba8fe9c27ac49a74af4171cbed659db8e1c7153f1f619f",
+    "reach_by_segment.csv": "b224770658e77f7bab612113a9567db3ec3305d86d20f9ba9d836714fc095b8d"
+  },
+  "outputs": {
+    "daily.csv.gz": "8f66921067b03a164dadddbedc7d1486b6c9bc898675b062b97f660c5447cc2c",
+    "truth.csv.gz": "1dd744ccced6e1fef5825b17500d5feda2494f6ecdd4b46e56facf10d2e20191",
+    "ad_launch.csv": "fcb44b7d8f6ed13e2b3183de21721b22ab93c88d24c0a88b1995b1e9ea67752f"
+  }
+}

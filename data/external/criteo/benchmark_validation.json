@@ -1,0 +1,42 @@
+{
+  "scope": "Numerical learner component smoke benchmark, not the trained adsim system or MiniLM",
+  "training_rows": 320000,
+  "test_evaluated": false,
+  "preprocessing": "Training-only median imputation, signed log of numeric inputs, category frequency encoding and missingness flags. Ridge standardisation fitted only on training.",
+  "limitations": "Frequency encoding discards category identity; these are simple fixed baselines, not tuned models. Source sampling prevents interpreting sample rates as production CTR.",
+  "fit_seconds": {
+    "ridge": 0.09205966599984095,
+    "boosted_tree": 6.833751083999232
+  },
+  "results": {
+    "validation": {
+      "training_rate_baseline": {
+        "log_loss": 0.15122183797986094,
+        "brier_score": 0.0336268892578125,
+        "roc_auc": 0.5,
+        "mean_prediction": 0.03309374999999999,
+        "observed_sample_rate": 0.0348375,
+        "rows": 80000,
+        "predictions_outside_0_1": 0
+      },
+      "ridge_component": {
+        "log_loss": 0.14742022308258132,
+        "brier_score": 0.033032241236296625,
+        "roc_auc": 0.6890770018978949,
+        "mean_prediction": 0.03478288910066993,
+        "observed_sample_rate": 0.0348375,
+        "rows": 80000,
+        "predictions_outside_0_1": 4314
+      },
+      "boosted_tree_component": {
+        "log_loss": 0.14196586070355965,
+        "brier_score": 0.03283920491874793,
+        "roc_auc": 0.701761611437336,
+        "mean_prediction": 0.03405500668688023,
+        "observed_sample_rate": 0.0348375,
+        "rows": 80000,
+        "predictions_outside_0_1": 0
+      }
+    }
+  }
+}

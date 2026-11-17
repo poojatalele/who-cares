@@ -1,0 +1,192 @@
+{
+  "code_commit": "06d6f6c675b65f3829f6f106cb4ec528716aff48",
+  "uncommitted_adsim_changes": true,
+  "engine_sha256": "5b55ff61478506eb525e2b4f8fd9bdbf34c9d0ec171fe2cfcec6e3d6b0997f68",
+  "scope": "Actual adsim._Hier Poisson and _PoissonTree learner components (the engine's CTR path when zero-click rows exist) retrained on Kaggle, with the engine's CTR ceiling; not the full Engine, MiniLM, CPM or campaign/audience model",
+  "engine_path_candidates": [
+    "adsim_poisson_component",
+    "adsim_poisson_tree_component"
+  ],
+  "reference_models": {
+    "training_rate_baseline": "constant training click rate",
+    "ridge_on_binary_label_reference": "adsim._Hier Ridge fitted on the raw 0/1 label. Engine fits Ridge only on log CTR when every row has clicks, so this is a linear reference, not an engine path, and is excluded from selection"
+  },
+  "ctr_ceiling": {
+    "max_ctr_pct": 100.0,
+    "applied_to": [
+      "adsim_poisson_component",
+      "adsim_poisson_tree_component"
+    ],
+    "raw_outputs_outside_0_1": "count before the ceiling",
+    "outputs_outside_0_1": "count in the scored output"
+  },
+  "training_rows": 641768,
+  "training_clicks": 164213,
+  "zero_labels_retained": 477555,
+  "feature_allowlist": [
+    "integer_feature_1",
+    "integer_feature_2",
+    "integer_feature_3",
+    "integer_feature_4",
+    "integer_feature_5",
+    "integer_feature_6",
+    "integer_feature_7",
+    "integer_feature_8",
+    "integer_feature_9",
+    "integer_feature_10",
+    "integer_feature_11",
+    "integer_feature_12",
+    "integer_feature_13",
+    "categorical_feature_1",
+    "categorical_feature_2",
+    "categorical_feature_3",
+    "categorical_feature_4",
+    "categorical_feature_5",
+    "categorical_feature_6",
+    "categorical_feature_7",
+    "categorical_feature_8",
+    "categorical_feature_9",
+    "categorical_feature_10",
+    "categorical_feature_11",
+    "categorical_feature_12",
+    "categorical_feature_13",
+    "categorical_feature_14",
+    "categorical_feature_15",
+    "categorical_feature_16",
+    "categorical_feature_17",
+    "categorical_feature_18",
+    "categorical_feature_19",
+    "categorical_feature_20",
+    "categorical_feature_21",
+    "categorical_feature_22",
+    "categorical_feature_23",
+    "categorical_feature_24",
+    "categorical_feature_25",
+    "categorical_feature_26"
+  ],
+  "preprocessing": "Training-only numeric median imputation, signed log1p numeric values, category frequency encoding, explicit missingness flags. _Hier applies training-only standardisation internally.",
+  "limitations": [
+    "Anonymous category identity is discarded by frequency encoding",
+    "Log-rate components are exponentiated and capped at the engine's 100% CTR ceiling; all outputs additionally clipped to [1e-7, 1-1e-7] only for probability scoring",
+    "No full campaign-engine test because actual campaign/audience/creative/spend fields are unavailable",
+    "Systematic one-in-50 sample; source probabilities reflect upstream label-dependent sampling",
+    "Row-order holdout from labelled train.txt, not a Kaggle leaderboard submission",
+    "Test scored after model selection; do not reuse it for tuning",
+    "Test was first scored at commit 06d6f6c before the CTR ceiling existed and rescored after adding it; candidates, hyperparameters and the selection rule were not changed using test results"
+  ],
+  "fit_seconds": {
+    "ridge_on_binary_label_reference": 2.718570750002982,
+    "adsim_poisson_component": 9.84204949999912,
+    "adsim_poisson_tree_component": 22.51018120899971
+  },
+  "convergence_warnings": {
+    "ridge_on_binary_label_reference": [],
+    "adsim_poisson_component": [],
+    "adsim_poisson_tree_component": []
+  },
+  "selection": {
+    "model": "adsim_poisson_tree_component",
+    "criterion": "validation log loss",
+    "test_used_for_selection": false
+  },
+  "validation": {
+    "training_rate_baseline": {
+      "log_loss": 0.5693387829938358,
+      "brier_score": 0.19069609317194164,
+      "roc_auc": 0.5,
+      "average_precision": 0.2564753275839502,
+      "mean_prediction": 0.25587595517383227,
+      "sample_click_rate": 0.2564753275839502,
+      "rows": 137522,
+      "raw_outputs_outside_0_1": 0,
+      "outputs_outside_0_1": 0
+    },
+    "ridge_on_binary_label_reference": {
+      "log_loss": 0.5215405040292088,
+      "brier_score": 0.16693062861736735,
+      "roc_auc": 0.7244789075781175,
+      "average_precision": 0.4800775025228597,
+      "mean_prediction": 0.2608318570232671,
+      "sample_click_rate": 0.2564753275839502,
+      "rows": 137522,
+      "raw_outputs_outside_0_1": 2534,
+      "outputs_outside_0_1": 2534
+    },
+    "adsim_poisson_component": {
+      "log_loss": 0.5198197852940262,
+      "brier_score": 0.16750696567781886,
+      "roc_auc": 0.7240990283624185,
+      "average_precision": 0.47751824237823337,
+      "mean_prediction": 0.25890712341157185,
+      "sample_click_rate": 0.2564753275839502,
+      "rows": 137522,
+      "raw_outputs_outside_0_1": 434,
+      "outputs_outside_0_1": 0
+    },
+    "adsim_poisson_tree_component": {
+      "log_loss": 0.4870087470338128,
+      "brier_score": 0.15872818383200965,
+      "roc_auc": 0.7571888737122978,
+      "average_precision": 0.5319546019253761,
+      "mean_prediction": 0.2592649642171377,
+      "sample_click_rate": 0.2564753275839502,
+      "rows": 137522,
+      "raw_outputs_outside_0_1": 189,
+      "outputs_outside_0_1": 0
+    }
+  },
+  "test": {
+    "training_rate_baseline": {
+      "log_loss": 0.5709068086488097,
+      "brier_score": 0.19141325925525757,
+      "roc_auc": 0.5,
+      "average_precision": 0.2579441834760984,
+      "mean_prediction": 0.25587595517383227,
+      "sample_click_rate": 0.2579441834760984,
+      "rows": 137522,
+      "raw_outputs_outside_0_1": 0,
+      "outputs_outside_0_1": 0
+    },
+    "ridge_on_binary_label_reference": {
+      "log_loss": 0.5263774528587504,
+      "brier_score": 0.1689771264464063,
+      "roc_auc": 0.7175193089248688,
+      "average_precision": 0.4711004457368001,
+      "mean_prediction": 0.262619496972252,
+      "sample_click_rate": 0.2579441834760984,
+      "rows": 137522,
+      "raw_outputs_outside_0_1": 2324,
+      "outputs_outside_0_1": 2324
+    },
+    "adsim_poisson_component": {
+      "log_loss": 0.5270663050115578,
+      "brier_score": 0.16975647709100372,
+      "roc_auc": 0.7170860046828321,
+      "average_precision": 0.4683722856103321,
+      "mean_prediction": 0.2605919615117712,
+      "sample_click_rate": 0.2579441834760984,
+      "rows": 137522,
+      "raw_outputs_outside_0_1": 422,
+      "outputs_outside_0_1": 0
+    },
+    "adsim_poisson_tree_component": {
+      "log_loss": 0.49433102359176434,
+      "brier_score": 0.1611643738624488,
+      "roc_auc": 0.7492562165693687,
+      "average_precision": 0.5212268508107599,
+      "mean_prediction": 0.259321472059147,
+      "sample_click_rate": 0.2579441834760984,
+      "rows": 137522,
+      "raw_outputs_outside_0_1": 148,
+      "outputs_outside_0_1": 0
+    }
+  },
+  "selected_model_brier_improvement_over_baseline": {
+    "mean": 0.030248885392808744,
+    "bootstrap_95_percentile_interval": [
+      0.029497426830431592,
+      0.03097996237127484
+    ],
+    "caution": "Descriptive row bootstrap; dependence among impressions is not accounted for"
+  }
+}
